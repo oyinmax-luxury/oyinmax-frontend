@@ -35,38 +35,57 @@
 // export default App
 
 
-import { Routes, Route } from "react-router-dom";
-import Layout from "./components/layout/Layout";
+// import { Routes, Route } from "react-router-dom";
+// // import Layout from "./components/layouts/Layout";
 
-// Pages
-import Home from "./pages/HomePage";
-import Products from "./pages/Products";
-import ProductDetails from "./pages/ProductDetails";
-import Cart from "./pages/Cart";
-import Checkout from "./pages/Checkout";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import UserDashboard from "./pages/UserDashboard";
-import AdminDashboard from "./pages/AdminDashboard";
+// // // Pages
+// // import Home from "./pages/HomePage";
+// // import Products from "./pages/Products";
+// // import ProductDetails from "./pages/ProductDetails";
+// // import Cart from "./pages/Cart";
+// // import Checkout from "./pages/Checkout";
+// // import Login from "./pages/Login";
+// // import Register from "./pages/Register";
+// // import UserDashboard from "./pages/UserDashboard";
+// // import AdminDashboard from "./pages/AdminDashboard";
+
+// import HomePage from "./pages/HomePage";
+
+// function App() {
+//   return (
+//     <div className="bg-luxuryIvory min-h-screen font-body text-luxuryBlack">
+//       <Routes>
+//         <Route path="/" element={<Layout />}>
+//           <Route index element={<HomePage />} />
+//           <Route path="products" element={<Products />} />
+//           <Route path="products/:id" element={<ProductDetails />} />
+//           <Route path="cart" element={<Cart />} />
+//           <Route path="checkout" element={<Checkout />} />
+//           <Route path="login" element={<Login />} />
+//           <Route path="register" element={<Register />} />
+//           <Route path="dashboard" element={<UserDashboard />} />
+//           <Route path="admin" element={<AdminDashboard />} />
+//         </Route>
+//       </Routes>
+//     </div>
+//   );
+// }
+
+import { Routes, Route } from "react-router-dom";
+// import Layout from "./components/layouts/Layout"; // Commented out for now
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
     <div className="bg-luxuryIvory min-h-screen font-body text-luxuryBlack">
       <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="products" element={<Products />} />
-          <Route path="products/:id" element={<ProductDetails />} />
-          <Route path="cart" element={<Cart />} />
-          <Route path="checkout" element={<Checkout />} />
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
-          <Route path="dashboard" element={<UserDashboard />} />
-          <Route path="admin" element={<AdminDashboard />} />
-        </Route>
+        {/* Render only the HomePage for now */}
+        <Route path="/" element={<HomePage />} />
       </Routes>
     </div>
   );
 }
+
+
 
 export default App;
