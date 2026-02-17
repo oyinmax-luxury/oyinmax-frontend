@@ -1,91 +1,57 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css'
 
-// function App() {
-//   const [count, setCount] = useState(0)
-
-//   return (
-//     <>
-//       <div>
-//         <a href="https://vite.dev" target="_blank">
-//           <img src={viteLogo} className="logo" alt="Vite logo" />
-//         </a>
-//         <a href="https://react.dev" target="_blank">
-//           <img src={reactLogo} className="logo react" alt="React logo" />
-//         </a>
-//       </div>
-//       <h1>Vite + React</h1>
-//       <div className="card">
-//         <button onClick={() => setCount((count) => count + 1)}>
-//           count is {count}
-//         </button>
-//         <p>
-//           Edit <code>src/App.jsx</code> and save to test HMR
-//         </p>
-//       </div>
-//       <p className="read-the-docs">
-//         Click on the Vite and React logos to learn more
-//       </p>
-//     </>
-//   )
-// }
-
-// export default App
-
-
-// import { Routes, Route } from "react-router-dom";
-// // import Layout from "./components/layouts/Layout";
-
-// // // Pages
-// // import Home from "./pages/HomePage";
-// // import Products from "./pages/Products";
-// // import ProductDetails from "./pages/ProductDetails";
-// // import Cart from "./pages/Cart";
-// // import Checkout from "./pages/Checkout";
-// // import Login from "./pages/Login";
-// // import Register from "./pages/Register";
-// // import UserDashboard from "./pages/UserDashboard";
-// // import AdminDashboard from "./pages/AdminDashboard";
-
-// import HomePage from "./pages/HomePage";
-
-// function App() {
-//   return (
-//     <div className="bg-luxuryIvory min-h-screen font-body text-luxuryBlack">
-//       <Routes>
-//         <Route path="/" element={<Layout />}>
-//           <Route index element={<HomePage />} />
-//           <Route path="products" element={<Products />} />
-//           <Route path="products/:id" element={<ProductDetails />} />
-//           <Route path="cart" element={<Cart />} />
-//           <Route path="checkout" element={<Checkout />} />
-//           <Route path="login" element={<Login />} />
-//           <Route path="register" element={<Register />} />
-//           <Route path="dashboard" element={<UserDashboard />} />
-//           <Route path="admin" element={<AdminDashboard />} />
-//         </Route>
-//       </Routes>
-//     </div>
-//   );
-// }
 
 import { Routes, Route } from "react-router-dom";
 // import Layout from "./components/layouts/Layout"; // Commented out for now
 import HomePage from "./pages/HomePage";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import UserDashboard from "./pages/UserDashboard";
+import AdminDashboard from "./pages/AdminDashboard";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Products from "./pages/Products";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
-    <div className="bg-luxuryIvory min-h-screen font-body text-luxuryBlack">
+    <div className="bg-brand-ivory min-h-screen font-body text-brand-dark">
+      <Toaster position="top-right" reverseOrder={false} />
       <Routes>
-        {/* Render only the HomePage for now */}
         <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+        {/* User Route */}
+        <Route 
+          path="/dashboard" 
+          element={
+            <ProtectedRoute allowedRoles={["user", "admin"]}>
+              <UserDashboard />
+            </ProtectedRoute>
+          } 
+        />
+
+        {/* Admin Route */}
+        <Route 
+          path="/admin/dashboard" 
+          element={
+            <ProtectedRoute allowedRoles={["admin"]}>
+              <AdminDashboard />
+            </ProtectedRoute>
+          } 
+        />
+
+        {/* Admin Product Management Route */}
+        <Route 
+          path="/admin/products" 
+          element={
+            <ProtectedRoute allowedRoles={["admin"]}>
+              <Products />
+            </ProtectedRoute>
+          } 
+        />
       </Routes>
     </div>
   );
 }
-
-
 
 export default App;
