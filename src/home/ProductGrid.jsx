@@ -1,7 +1,25 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom"; // Assuming you want to link to product details
+import { useCart } from "../context/CartContext";
+import toast from "react-hot-toast";
 
 export default function ProductGrid({ products }) {
+    const { dispatch } = useCart(); // 2. GET DISPATCH FROM CONTEXT
+
+    const addToCart = (product) => {
+        // 3. DEFINE THE FUNCTION
+        dispatch({
+        type: "ADD_TO_CART",
+        payload: {
+            ...product,
+            quantity: 1, // Default quantity to 1 when adding from grid
+        },
+        });
+        toast.success(`${product.name} added to cart`);
+    };
+
+
+
   // If no products, show a clean message
   if (!products || products.length === 0) {
     return (
@@ -41,6 +59,22 @@ export default function ProductGrid({ products }) {
                   
                   {/* Subtle overlay on hover */}
                   <div className="absolute inset-0 bg-brand-dark/0 group-hover:bg-brand-dark/5 transition-colors duration-300" />
+
+                  {/* Add to Cart Button (Appears on hover) */}
+                    {!isOutOfStock && (
+                        <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out">
+                        <button 
+                            className="w-full bg-white text-brand-dark text-sm uppercase tracking-widest py-3 font-body font-medium hover:bg-brand-gold hover:text-white transition duration-300 shadow-lg"
+                            onClick={(e) => {
+                                e.preventDefault(); // Prevent navigating to product page
+                                addToCart(product)
+                                console.log("Added to cart:", product.name);
+                            }}
+                        >
+                            Add to Cart
+                        </button>
+                        </div>
+                    )}
                   
                   {/* Out of Stock Label */}
                   {isOutOfStock && (
