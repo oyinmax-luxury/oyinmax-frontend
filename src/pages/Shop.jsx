@@ -11,13 +11,12 @@ export default function Shop() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [loading, setLoading] = useState(true);
 
-  // 1. Fetch products directly if they aren't passed from App.jsx
+  
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const { data } = await api.get("/products");
-        // 2. Safety check: Ensure we are setting an array
-        // If your backend returns { products: [...] }, use data.products
+        
         const actualData = Array.isArray(data) ? data : data.products || [];
         setProducts(actualData);
       } catch (error) {
@@ -30,11 +29,9 @@ export default function Shop() {
     fetchProducts();
   }, []);
 
-  // 3. Add a fallback to products to prevent the .filter error
+  
   const safeProducts = Array.isArray(products) ? products : [];
 
-  // 2. Filter Logic (Case Sensitive Check)
-  // We use .trim() to ensure no accidental spaces break the match
   const filteredProducts = activeCategory === "All" 
     ? products 
     : products.filter(p => p.category?.trim() === activeCategory.trim());
