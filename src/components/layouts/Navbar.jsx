@@ -34,7 +34,7 @@ export default function Navbar() {
           
           <div className="flex items-center gap-6 text-sm font-body">
             {/* UPDATED: Cart Icon for Desktop */}
-            <Link to="/checkout" className="relative hover:text-brand-gold transition">
+            <Link to="/cart" className="relative hover:text-brand-gold transition">
               <HiOutlineShoppingBag className="text-xl" />
               {cartItemCount > 0 && (
                 <span className="absolute -top-2 -right-2 bg-brand-gold text-brand-dark text-xs rounded-full w-4 h-4 flex items-center justify-center font-semibold">
@@ -55,7 +55,7 @@ export default function Navbar() {
         {/* UPDATED: Container for Mobile Icons */}
         <div className="flex items-center gap-4 md:hidden">
           {/* UPDATED: Cart Icon for Mobile */}
-          <Link to="/checkout" className="relative hover:text-brand-gold transition text-2xl">
+          <Link to="/cart" className="relative hover:text-brand-gold transition text-2xl">
             <HiOutlineShoppingBag />
             {cartItemCount > 0 && (
               <span className="absolute -top-2 -right-2 bg-brand-gold text-brand-dark text-xs rounded-full w-4 h-4 flex items-center justify-center font-semibold">

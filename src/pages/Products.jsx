@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { HiPlus, HiPencil, HiTrash, HiX, HiPhotograph } from "react-icons/hi";
 import api from "../services/api";
 import toast from "react-hot-toast";
+import { HiClipboardList, HiArrowLeft } from "react-icons/hi"; // 1. IMPORT ICON
+import { Link } from "react-router-dom"; // 2. IMPORT LINK
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -119,7 +121,13 @@ export default function Products() {
   return (
     <div className="min-h-screen bg-brand-ivory py-24 px-4 text-brand-dark">
       <div className="max-w-7xl mx-auto">
+
+        <Link to="/admin/dashboard" className="flex items-center gap-2 text-brand-muted hover:text-brand-gold mb-8 font-body transition">
+            <HiArrowLeft /> Back to Dashboard
+        </Link>
+
         <div className="flex justify-between items-center mb-10 border-b border-brand-muted/20 pb-6">
+
           <h1 className="text-4xl font-light font-luxury">Manage Products</h1>
           <button
             onClick={() => { resetForm(); setIsModalOpen(true); }}

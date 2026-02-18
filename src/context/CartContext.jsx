@@ -7,32 +7,37 @@ const initialState = {
   cartItems: [],
 };
 
+
+
 function cartReducer(state, action) {
   switch (action.type) {
     case "ADD_TO_CART": {
-      // FIX: Added block scoping { } to allow const declarations
       const item = action.payload;
-      const exist = state.cartItems.find(i => i._id === item._id);
+      const existItem = state.cartItems.find((i) => i._id === item._id);
 
-      if (exist) {
+      if (existItem) {
+        // ITEM EXISTS: Map through and update quantity
         return {
           ...state,
-          cartItems: state.cartItems.map(i =>
-            i._id === exist._id ? item : i
+          cartItems: state.cartItems.map((i) =>
+            i._id === existItem._id
+              ? { ...i, quantity: i.quantity + item.quantity } // Increment quantity
+              : i
           ),
         };
+      } else {
+        // ITEM NEW: Add to cart
+        return {
+          ...state,
+          cartItems: [...state.cartItems, item],
+        };
       }
-
-      return {
-        ...state,
-        cartItems: [...state.cartItems, item],
-      };
     }
 
     case "REMOVE_FROM_CART":
       return {
         ...state,
-        cartItems: state.cartItems.filter(i => i._id !== action.payload),
+        cartItems: state.cartItems.filter((i) => i._id !== action.payload),
       };
 
     case "CLEAR_CART":
