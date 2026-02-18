@@ -13,6 +13,9 @@ import { Toaster } from "react-hot-toast";
 import Cart from "./context/Cart";
 import AdminOrders from "./pages/AdminOrders";
 import AdminUsers from "./pages/AdminUsers";
+import About from "./pages/About";
+import Contact from "./pages/Contact";
+import Shop from "./pages/Shop";
 
 function App() {
   return (
@@ -23,6 +26,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/shop" element={<Shop />} />
 
         {/* User Route */}
         <Route 
