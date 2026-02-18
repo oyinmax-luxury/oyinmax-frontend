@@ -15,13 +15,6 @@ export default function AdminDashboard() {
     localStorage.removeItem("userInfo");
     navigate("/");
   };
-//   const stats = [
-//     { name: "Total Products", value: "24", icon: HiOutlineFolderAdd },
-//     { name: "Pending Orders", value: "12", icon: HiOutlineClipboardList },
-//     { name: "Total Users", value: "156", icon: HiOutlineUsers },
-//     { name: "Revenue (MTD)", value: "£4,250", icon: HiOutlineTrendingUp },
-//   ];
-
 
 const [dashboardData, setDashboardData] = useState(null);
   const [loading, setLoading] = useState(true);
