@@ -217,7 +217,48 @@ export default function Products() {
                   <input type="number" name="stock" value={formData.stock} onChange={handleInputChange} placeholder="Stock" className="w-full p-3 border rounded-lg" required />
                 </div>
                 
-                <input type="text" name="category" value={formData.category} onChange={handleInputChange} placeholder="Category" className="w-full p-3 border rounded-lg" required />
+                <select 
+                    name="category" 
+                    value={formData.category} 
+                    onChange={handleInputChange} 
+                    className="w-full p-3 border rounded-lg bg-white focus:outline-none focus:ring-1 focus:ring-brand-gold appearance-none"
+                    required
+                    >
+                    <option value="" disabled>Select Category</option>
+                    
+                    {/* African Heritage & Traditional */}
+                    <optgroup label="African Luxury & Heritage">
+                        <option value="Aso Ebi">Aso Ebi Styles</option>
+                        <option value="Agbada">Agbada Collection</option>
+                        <option value="Kaftans">Kaftans & Senator Wear</option>
+                        <option value="Adire Luxury">Adire Luxury</option>
+                        <option value="Ankara Fusion">Ankara Fusion</option>
+                    </optgroup>
+
+                    {/* Western / International High Fashion */}
+                    <optgroup label="Western & Global Styles">
+                        <option value="Couture Gowns">Evening & Couture Gowns</option>
+                        <option value="Suits & Blazers">Bespoke Suits & Blazers</option>
+                        <option value="Ready-to-Wear">Ready-to-Wear (RTW)</option>
+                        <option value="Resort Wear">Resort & Vacation Wear</option>
+                        <option value="Luxury Streetwear">Luxury Streetwear</option>
+                    </optgroup>
+
+                    {/* Bridal & Formal */}
+                    <optgroup label="Bridal & Red Carpet">
+                        <option value="Traditional Bridal">Traditional Bridal</option>
+                        <option value="White Wedding">White Wedding Collection</option>
+                        <option value="Cocktail Dresses">Cocktail & Party Dresses</option>
+                    </optgroup>
+
+                    {/* Accessories */}
+                    <optgroup label="Accessories & Essentials">
+                        <option value="Gele">Gele & Headgear</option>
+                        <option value="Leather Goods">Bags & Leather Goods</option>
+                        <option value="Accessories">Jewelry & Accents</option>
+                        <option value="Fabrics">Premium Fabrics</option>
+                    </optgroup>
+                    </select>
                 <input type="text" name="sizes" value={formData.sizes} onChange={handleInputChange} placeholder="Sizes (comma separated)" className="w-full p-3 border rounded-lg" />
                 <input type="text" name="colors" value={formData.colors} onChange={handleInputChange} placeholder="Colors (comma separated)" className="w-full p-3 border rounded-lg" />
                 
