@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { HiOutlineFolderAdd, HiOutlineClipboardList, HiOutlineUsers, HiOutlineTrendingUp, HiOutlineLogout } from "react-icons/hi";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import api from "../services/api";
 
 
 export default function AdminDashboard() {
@@ -13,11 +15,46 @@ export default function AdminDashboard() {
     localStorage.removeItem("userInfo");
     navigate("/");
   };
+
+const [dashboardData, setDashboardData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const { data } = await api.get("/admin/stats");
+        setDashboardData(data);
+      } catch (err) {
+        console.error("Failed to fetch stats", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchStats();
+  }, []);
+
+  // Format the stats for the UI
   const stats = [
-    { name: "Total Products", value: "24", icon: HiOutlineFolderAdd },
-    { name: "Pending Orders", value: "12", icon: HiOutlineClipboardList },
-    { name: "Total Users", value: "156", icon: HiOutlineUsers },
-    { name: "Revenue (MTD)", value: "£4,250", icon: HiOutlineTrendingUp },
+    { 
+      name: "Total Products", 
+      value: dashboardData?.totalProducts || "0", 
+      icon: HiOutlineFolderAdd 
+    },
+    { 
+      name: "Pending Orders", 
+      value: dashboardData?.pendingOrders || "0", 
+      icon: HiOutlineClipboardList 
+    },
+    { 
+      name: "Total Users", 
+      value: dashboardData?.totalUsers || "0", 
+      icon: HiOutlineUsers 
+    },
+    { 
+      name: "Revenue (Delivered)", 
+      value: `£${dashboardData?.totalRevenue?.toLocaleString() || "0"}`, 
+      icon: HiOutlineTrendingUp 
+    },
   ];
 
   const adminLinks = [
@@ -25,6 +62,8 @@ export default function AdminDashboard() {
     { name: "Manage Orders", to: "/admin/orders", icon: HiOutlineClipboardList },
     { name: "Manage Users", to: "/admin/users", icon: HiOutlineUsers },
   ];
+
+  if (loading) return <div className="p-10 text-brand-muted font-luxury">Updating Ledger...</div>;
 
   return (
     <div className="min-h-screen bg-brand-ivory py-24 px-4 text-brand-dark">
