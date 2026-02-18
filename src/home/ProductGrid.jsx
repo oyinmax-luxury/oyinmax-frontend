@@ -23,14 +23,14 @@ export default function ProductGrid({ products }) {
   // If no products, show a clean message
   if (!products || products.length === 0) {
     return (
-      <section className="bg-brand-ivory py-20 px-4 text-center">
+      <section id="featured-products" className="bg-brand-ivory py-20 px-4 text-center">
         <p className="text-brand-muted font-body">No products found in this collection.</p>
       </section>
     );
   }
 
   return (
-    <section className="bg-brand-ivory py-20 px-4">
+    <section id="featured-products" className="bg-brand-ivory py-20 px-4">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-light text-center mb-16 font-luxury text-brand-dark tracking-wide">
           Our Collection
