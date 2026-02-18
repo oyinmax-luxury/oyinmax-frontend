@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { HiTrash, HiOutlineShoppingBag, HiArrowLeft } from "react-icons/hi";
 import { useCart } from "../context/CartContext"; // Assuming your context path
 import toast from "react-hot-toast";
+import api from "../services/api";
 
 export default function Cart() {
   const { state, dispatch } = useCart();
@@ -21,6 +22,70 @@ export default function Cart() {
     setShippingData({ ...shippingData, [e.target.name]: e.target.value });
   };
 
+
+ const handleCheckout = async (e) => {
+  e.preventDefault();
+
+  if (cartItems.length === 0) {
+    toast.error("Your cart is empty");
+    return;
+  }
+
+  // 1. Prepare data for the API
+  const orderData = {
+    customerName: shippingData.name,
+    email: shippingData.email,
+    shippingAddress: shippingData.address,
+    orderItems: cartItems.map(item => ({
+      name: item.name,
+      quantity: item.quantity,
+      price: item.price,
+      product: item._id
+    })),
+    totalPrice: totalPrice
+  };
+
+  try {
+    // 2. Call your new backend endpoint
+    await api.post("/whatsapp-orders", orderData);
+    
+    // 3. Proceed to WhatsApp as before
+    const itemsMessage = cartItems
+      .map(
+        (item) =>
+          `* ${item.name} (${item.quantity} x £${item.price.toLocaleString()})`
+      )
+      .join("\n");
+
+    const message = `
+        *New Order from OYINMAX*
+        -------------------------
+        *Customer Details:*
+        Name: ${shippingData.name}
+        Email: ${shippingData.email}
+        Address: ${shippingData.address}
+        -------------------------
+        *Order Details:*
+        ${itemsMessage}
+        -------------------------
+        *Total: £${totalPrice.toLocaleString()}*
+        `;
+
+    const whatsappNumber = "447756120178";
+    const encodedMessage = encodeURIComponent(message.trim());
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+    window.open(whatsappUrl, "_blank");
+    
+    // Clear cart
+    dispatch({ type: "CLEAR_CART" });
+
+  } catch (error) {
+    console.error(error);
+    toast.error("Could not place order. Please try again.");
+  }
+};
+
   const removeFromCart = (id) => {
     dispatch({ type: "REMOVE_FROM_CART", payload: id });
     toast.success("Item removed from cart");
@@ -32,53 +97,53 @@ export default function Cart() {
     0
   );
 
-  const handleCheckout = (e) => {
-    e.preventDefault();
+//   const handleCheckout = (e) => {
+//     e.preventDefault();
 
-    if (cartItems.length === 0) {
-      toast.error("Your cart is empty");
-      return;
-    }
+//     if (cartItems.length === 0) {
+//       toast.error("Your cart is empty");
+//       return;
+//     }
 
-    // Format cart items for the message
-    const itemsMessage = cartItems
-      .map(
-        (item) =>
-          `* ${item.name} (${item.quantity} x £${item.price.toLocaleString()})`
-      )
-      .join("\n");
+//     // Format cart items for the message
+//     const itemsMessage = cartItems
+//       .map(
+//         (item) =>
+//           `* ${item.name} (${item.quantity} x £${item.price.toLocaleString()})`
+//       )
+//       .join("\n");
 
-    // Construct the WhatsApp message
-    const message = `
-*New Order from OYINMAX*
--------------------------
-*Customer Details:*
-Name: ${shippingData.name}
-Email: ${shippingData.email}
-Address: ${shippingData.address}
--------------------------
-*Order Details:*
-${itemsMessage}
--------------------------
-*Total: £${totalPrice.toLocaleString()}*
-`;
+//     // Construct the WhatsApp message
+//     const message = `
+// *New Order from OYINMAX*
+// -------------------------
+// *Customer Details:*
+// Name: ${shippingData.name}
+// Email: ${shippingData.email}
+// Address: ${shippingData.address}
+// -------------------------
+// *Order Details:*
+// ${itemsMessage}
+// -------------------------
+// *Total: £${totalPrice.toLocaleString()}*
+// `;
 
-    // WhatsApp Number (include country code, remove +)
-    const whatsappNumber = "2348000000000"; // REPLACE WITH YOUR NUMBER
+//     // WhatsApp Number (include country code, remove +)
+//     const whatsappNumber = "447756120178"; 
 
-    // Encode the message for the URL
-    const encodedMessage = encodeURIComponent(message.trim());
+//     // Encode the message for the URL
+//     const encodedMessage = encodeURIComponent(message.trim());
     
-    // WhatsApp URL structure - works for both iOS and Android
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+//     // WhatsApp URL structure - works for both iOS and Android
+//     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
-    // Redirect to WhatsApp
-    window.open(whatsappUrl, "_blank");
+//     // Redirect to WhatsApp
+//     window.open(whatsappUrl, "_blank");
     
-    // Optional: Clear cart after redirect
-    // dispatch({ type: "CLEAR_CART" });
-    // navigate("/");
-  };
+//     // Optional: Clear cart after redirect
+//     // dispatch({ type: "CLEAR_CART" });
+//     navigate("/");
+//   };
 
   return (
     <div className="min-h-screen bg-brand-ivory py-24 px-4 text-brand-dark">

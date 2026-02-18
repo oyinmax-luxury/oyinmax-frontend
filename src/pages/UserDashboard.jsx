@@ -5,18 +5,12 @@ import { useState, useEffect } from "react";
 import api from "../services/api";
 
 export default function UserDashboard() {
-  // Dummy data for demonstration
-  const user = { name: "Aisha Bello", email: "aisha.b@example.com" };
-  const orders = [
-    { id: "ORD-7732", status: "Delivered", total: "£150.00", date: "Jan 15, 2026" },
-    { id: "ORD-9901", status: "Processing", total: "£85.50", date: "Feb 10, 2026" },
-  ];
-
 
   const navigate = useNavigate()
 
   // UPDATED: State to hold user profile data
   const [userProfile, setUserProfile] = useState(null);
+  const [orders, setOrders] = useState([]); // UPDATED: State for orders
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -26,6 +20,10 @@ export default function UserDashboard() {
       try {
         const { data } = await api.get("/users/profile");
         setUserProfile(data);
+
+        // UPDATED: Fetch Real Orders
+        const ordersRes = await api.get("/whatsapp-orders/myorders");
+        setOrders(ordersRes.data);
       } catch (err) {
         console.error("Error fetching profile:", err);
         setError("Failed to load profile");
@@ -104,16 +102,24 @@ export default function UserDashboard() {
             </div>
             
             <div className="space-y-4 font-body text-sm">
+              {orders.length === 0 && <p className="text-brand-muted">No orders found.</p>}
+              
               {orders.map((order) => (
-                <div key={order.id} className="flex justify-between items-center p-4 bg-brand-gray/50 rounded-lg">
+                <div key={order._id} className="flex justify-between items-center p-4 bg-brand-ivory/50 rounded-lg">
                   <div>
-                    <p className="font-semibold text-brand-dark">{order.id}</p>
-                    <p className="text-xs text-brand-muted">{order.date}</p>
+                    {/* Display Real Order ID */}
+                    <p className="font-semibold text-brand-dark">{order.orderId}</p>
+                    {/* Display Formatted Date */}
+                    <p className="text-xs text-brand-muted">{new Date(order.createdAt).toLocaleDateString()}</p>
                   </div>
+                  
+                  {/* Status Badge */}
                   <span className={`px-3 py-1 rounded-full text-xs ${order.status === 'Delivered' ? 'bg-green-100 text-green-700' : 'bg-brand-gold/10 text-brand-brown'}`}>
                     {order.status}
                   </span>
-                  <p className="font-semibold text-brand-dark">{order.total}</p>
+                  
+                  {/* Total Price */}
+                  <p className="font-semibold text-brand-dark">£{order.totalPrice.toLocaleString()}</p>
                 </div>
               ))}
             </div>

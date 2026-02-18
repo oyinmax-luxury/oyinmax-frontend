@@ -11,6 +11,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Products from "./pages/Products";
 import { Toaster } from "react-hot-toast";
 import Cart from "./context/Cart";
+import AdminOrders from "./pages/AdminOrders";
+import AdminUsers from "./pages/AdminUsers";
 
 function App() {
   return (
@@ -48,6 +50,24 @@ function App() {
           element={
             <ProtectedRoute allowedRoles={["admin"]}>
               <Products />
+            </ProtectedRoute>
+          } 
+        />
+
+        <Route 
+          path="/admin/orders" 
+          element={
+            <ProtectedRoute allowedRoles={["admin"]}>
+              <AdminOrders />
+            </ProtectedRoute>
+          } 
+        />
+
+        <Route 
+          path="/admin/users" 
+          element={
+            <ProtectedRoute allowedRoles={["admin"]}>
+              <AdminUsers />
             </ProtectedRoute>
           } 
         />
