@@ -82,7 +82,16 @@ export default function UserDashboard() {
             <div className="space-y-3 text-sm font-body text-brand-dark">
               <p><strong>Name:</strong> {userProfile.name}</p>
               <p><strong>Email:</strong> {userProfile.email}</p>
-              <p><strong>Member Since:</strong> Jan 2025</p>
+              {/* <p><strong>Member Since:</strong> Jan 2025</p> */}
+              <p className="text-sm font-body text-brand-dark">
+                <strong className="text-brand-gold font-medium">Member Since:</strong>{" "}
+                {userProfile?.createdAt 
+                    ? new Date(userProfile.createdAt).toLocaleDateString('en-US', { 
+                        month: 'long', 
+                        year: 'numeric' 
+                    }) 
+                    : "N/A"}
+                </p>
             </div>
             <button className="mt-8 text-sm text-brand-gold hover:text-brand-brown font-body font-semibold">
               Edit Profile
