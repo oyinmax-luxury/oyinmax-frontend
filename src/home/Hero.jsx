@@ -9,7 +9,10 @@ export default function Hero() {
 const images = [
     "https://images.unsplash.com/photo-1572804013427-4d7ca7268217?q=80&w=2000", // Luxury Dress
     "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2000", // High Fashion
-    "https://images.unsplash.com/photo-1581338834647-b0fb40704e21?q=80&w=2000"  // African Textile Detail
+    "https://images.unsplash.com/photo-1581338834647-b0fb40704e21?q=80&w=2000",  // African Textile Detail
+    "./hero-image3.jpg",
+    "./hero-image4.jpg",
+    "./hero-image5.jpg"
   ];
 
   const texts = [
