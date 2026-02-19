@@ -32,15 +32,15 @@ export default function About() {
         </p>
         <div className="mt-12 space-y-6 text-brand-muted font-body leading-loose text-lg">
           <p>
-            Founded on the principles of exclusivity and meticulous detail, Oyinmax serves as a sanctuary for those who view fashion as an art form. Every piece—from our hand-dyed Adire to our bespoke couture gowns—is a celebration of culture and contemporary luxury.
+            Founded on the principles of exclusivity and meticulous detail, Oyinmax serves as a sanctuary for those who view fashion as an art form. Every piece from our hand-dyed Adire to our bespoke couture gowns is a celebration of culture and contemporary luxury.
           </p>
           <p>
             Based in Exeter, UK, with deep roots in Nigerian artistry, we curate collections that resonate with the modern elite. We don't just dress bodies; we drape stories.
           </p>
         </div>
-        <Footer/>
+        
       </section>
-      
+      <Footer/>
     </div>
   );
 }
