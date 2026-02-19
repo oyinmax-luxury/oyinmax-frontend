@@ -2,6 +2,8 @@ import { motion } from "framer-motion";
 import Navbar from "../components/layouts/Navbar";
 import Footer from "../components/layouts/Footer";
 
+import hero2 from "../assets/hero-image2.jpg"
+
 export default function About() {
   return (
     <div className="min-h-screen bg-white">
@@ -10,7 +12,7 @@ export default function About() {
       <section className="relative h-[70vh] flex items-center justify-center overflow-hidden">
         <img 
         //   src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070" 
-          src="./hero-image2.jpg"
+          src={hero2}
           alt="Luxury Craft" 
           className="absolute inset-0 w-full h-full object-cover opacity-80"
         />

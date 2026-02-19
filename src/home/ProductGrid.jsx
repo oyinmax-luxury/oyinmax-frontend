@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom"; // Assuming you want to link to product details
+import { Link } from "react-router-dom"; 
 import { useCart } from "../context/CartContext";
 import toast from "react-hot-toast";
+
 
 export default function ProductGrid({ products }) {
     const { dispatch } = useCart(); // 2. GET DISPATCH FROM CONTEXT
@@ -21,13 +22,57 @@ export default function ProductGrid({ products }) {
 
 
   // If no products, show a clean message
-  if (!products || products.length === 0) {
-    return (
-      <section id="featured-products" className="bg-brand-ivory py-20 px-4 text-center">
-        <p className="text-brand-muted font-body">No products found in this collection.</p>
-      </section>
-    );
-  }
+//   if (!products || products.length === 0) {
+//     return (
+//       <section id="featured-products" className="bg-brand-ivory py-20 px-4 text-center">
+//         <p className="text-brand-muted font-body">No products found in this collection.</p>
+//       </section>
+//     );
+//   }
+
+if (!products || products.length === 0) {
+  return (
+    <section 
+      id="featured-products" 
+      className="bg-brand-ivory min-h-[60vh] flex flex-col items-center justify-center px-6 text-center"
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+        className="max-w-md"
+      >
+        {/* Subtle Decorative Icon */}
+        <div className="flex justify-center mb-8">
+          <div className="w-12 h-12 rounded-full border border-brand-gold/30 flex items-center justify-center text-brand-gold">
+            <HiOutlineSparkles size={20} className="animate-pulse" />
+          </div>
+        </div>
+
+        {/* Elegant Typography */}
+        <h2 className="text-4xl font-light font-luxury text-brand-dark mb-6 tracking-tight">
+          A Curated Selection <br /> 
+          <span className="italic">Coming Soon</span>
+        </h2>
+        
+        <div className="w-16 h-[1px] bg-brand-gold mx-auto mb-8"></div>
+
+        <p className="text-brand-muted font-body text-base leading-relaxed mb-10 uppercase tracking-[0.15em]">
+          Our artisans are currently finalizing new pieces. <br />
+          Please check back momentarily or explore our bespoke services.
+        </p>
+
+        {/* Call to Action to keep them on the site */}
+        <button 
+          onClick={() => window.location.reload()}
+          className="px-8 py-3 bg-brand-dark text-white text-[10px] uppercase tracking-[0.3em] hover:bg-brand-gold transition-colors duration-500"
+        >
+          Refresh Gallery
+        </button>
+      </motion.div>
+    </section>
+  );
+}
 
   return (
     <section id="featured-products" className="bg-brand-ivory py-20 px-4">
