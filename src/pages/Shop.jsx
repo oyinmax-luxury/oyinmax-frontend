@@ -53,7 +53,7 @@ export default function Shop() {
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`hover:text-brand-gold transition-colors pb-2 transition-all duration-300 ${
+                  className={`hover:text-brand-gold pb-2 transition-all duration-300 ${
                     activeCategory === cat ? "border-b border-brand-gold text-brand-dark font-bold" : "border-b border-transparent"
                   }`}
                 >
