@@ -4,19 +4,19 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import hero3 from "../assets/hero-image3.jpg";
-import hero4 from "../assets/hero-image4.jpg";
-import hero5 from "../assets/hero-image5.jpg";
+import hero1 from "../assets/newhero1.jpg";
+import hero2 from "../assets/newhero2.jpg";
+import hero3 from "../assets/newhero3.jpg";
+import hero4 from "../assets/newhero4.jpg";
 
 export default function Hero() {
  
+
 const images = [
-    "https://images.unsplash.com/photo-1572804013427-4d7ca7268217?q=80&w=2000", // Luxury Dress
-    "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2000", // High Fashion
-    "https://images.unsplash.com/photo-1581338834647-b0fb40704e21?q=80&w=2000",  // African Textile Detail
+    hero1,
+    hero2,
     hero3,
-    hero4,
-    hero5
+    hero4
   ];
 
   const texts = [

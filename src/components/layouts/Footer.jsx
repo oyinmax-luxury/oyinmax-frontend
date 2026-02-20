@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { FaInstagram, FaTwitter, FaFacebookF } from "react-icons/fa";
+import { FaInstagram, FaTwitter, FaFacebookF, FaTiktok } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -12,12 +12,15 @@ export default function Footer() {
           {/* Brand Pillar */}
           <div className="md:col-span-1">
             <h3 className="text-white font-luxury text-2xl tracking-[0.4em] mb-8">
-              OYINMAX
+              OYINMAX LUXURY
             </h3>
-            <p className="text-xs uppercase tracking-[0.15em] leading-relaxed opacity-80">
-              Preserving the heritage of <br /> 
+            {/* <p className="text-xs uppercase tracking-[0.15em] leading-relaxed opacity-80">
+              Promoting Culture and Heritage <br /> 
               African artistry through <br />
               modern silhouettes.
+            </p> */}
+            <p className="text-xs uppercase tracking-[0.15em] leading-relaxed opacity-80">
+              Promoting Culture and Heritage <br /> 
             </p>
           </div>
 
@@ -56,9 +59,24 @@ export default function Footer() {
             </li>
             </ul>
             <div className="flex gap-6 text-white/60">
-              <FaInstagram className="hover:text-brand-gold cursor-pointer transition-colors" />
+              {/* <FaInstagram className="hover:text-brand-gold cursor-pointer transition-colors" /> */}
+              <a 
+                href="https://www.instagram.com/oyinmax_luxury?igsh=eWowOXd6a2xlb3E2" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:text-brand-gold transition-colors duration-300"
+                >
+                <FaInstagram size={18} />
+                </a>
+                <a 
+                href="https://www.tiktok.com/@oyinmax_luxury?_r=1&_t=ZS-944i8FKxmaK" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="hover:text-brand-gold transition-colors duration-300"
+                >
+                <FaTiktok size={18} />
+                </a>
               <FaFacebookF className="hover:text-brand-gold cursor-pointer transition-colors" />
-              <FaTwitter className="hover:text-brand-gold cursor-pointer transition-colors" />
             </div>
           </div>
 
