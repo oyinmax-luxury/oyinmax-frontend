@@ -1,35 +1,93 @@
+
+import { Link } from "react-router-dom";
+import { FaInstagram, FaTwitter, FaFacebookF } from "react-icons/fa";
+
 export default function Footer() {
   return (
-    <footer className="bg-brand-dark text-brand-muted py-16 px-6">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-10">
-        <div>
-          <h3 className="text-white tracking-widest mb-4">OYINMAX</h3>
-          <p className="text-sm">
-            Premium African craftsmanship redefined for the modern global market.
-          </p>
+    <footer className="bg-brand-dark text-brand-muted pt-24 pb-12 px-6">
+      <div className="max-w-7xl mx-auto">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
+          
+          {/* Brand Pillar */}
+          <div className="md:col-span-1">
+            <h3 className="text-white font-luxury text-2xl tracking-[0.4em] mb-8">
+              OYINMAX
+            </h3>
+            <p className="text-xs uppercase tracking-[0.15em] leading-relaxed opacity-80">
+              Preserving the heritage of <br /> 
+              African artistry through <br />
+              modern silhouettes.
+            </p>
+          </div>
+
+          {/* Navigation Pillar */}
+          <div>
+            <h4 className="text-white font-luxury text-xs uppercase tracking-[0.3em] mb-8">
+              The House
+            </h4>
+            <ul className="space-y-4 text-[11px] uppercase tracking-[0.2em]">
+              <li>
+                <Link to="/shop" className="hover:text-brand-gold transition-colors duration-500">Collection</Link>
+              </li>
+              <li>
+                <Link to="/about" className="hover:text-brand-gold transition-colors duration-500">Our Story</Link>
+              </li>
+              <li>
+                <Link to="/shop" className="hover:text-brand-gold transition-colors duration-500">Bespoke</Link>
+              </li>
+              <li>
+                <Link to="/contact" className="hover:text-brand-gold transition-colors duration-500">Concierge</Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Social & Legal Pillar */}
+          <div>
+            <h4 className="text-white font-luxury text-xs uppercase tracking-[0.3em] mb-8">
+              Legal & Social
+            </h4>
+            <ul className="space-y-4 text-[11px] uppercase tracking-[0.2em] mb-8">
+              <li className="hover:text-brand-gold cursor-pointer transition-colors">Privacy Policy</li>
+              <li className="hover:text-brand-gold cursor-pointer transition-colors">Terms of Service</li>
+            </ul>
+            <div className="flex gap-6 text-white/60">
+              <FaInstagram className="hover:text-brand-gold cursor-pointer transition-colors" />
+              <FaFacebookF className="hover:text-brand-gold cursor-pointer transition-colors" />
+              <FaTwitter className="hover:text-brand-gold cursor-pointer transition-colors" />
+            </div>
+          </div>
+
+          {/* Newsletter Pillar */}
+          <div className="md:col-span-1">
+            <h4 className="text-white font-luxury text-xs uppercase tracking-[0.3em] mb-8">
+              The Newsletter
+            </h4>
+            <p className="text-[10px] uppercase tracking-[0.1em] mb-6 opacity-60">
+              Join the inner circle for exclusive previews.
+            </p>
+            <div className="relative group">
+              <input
+                type="email"
+                placeholder="EMAIL ADDRESS"
+                className="w-full pb-3 bg-transparent border-b border-brand-muted/30 text-[10px] tracking-[0.2em] focus:border-brand-gold focus:outline-none transition-colors duration-700 placeholder:text-brand-muted/40"
+              />
+              <button className="absolute right-0 bottom-3 text-[10px] tracking-[0.2em] text-brand-gold uppercase hover:text-white transition-colors">
+                Join
+              </button>
+            </div>
+          </div>
         </div>
 
-        <div>
-          <h4 className="text-white mb-4">Explore</h4>
-          <ul className="space-y-2 text-sm">
-            <li>Shop</li>
-            <li>About</li>
-            <li>Contact</li>
-          </ul>
+        {/* Bottom Bar */}
+        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="text-[9px] uppercase tracking-[0.4em] opacity-40">
+            © {new Date().getFullYear()} Oyinmax Luxury • Crafted in Africa
+          </div>
+          <div className="text-[9px] uppercase tracking-[0.4em] opacity-40 italic">
+            Defining the Modern Heirloom
+          </div>
         </div>
-
-        <div>
-          <h4 className="text-white mb-4">Newsletter</h4>
-          <input
-            type="email"
-            placeholder="Enter your email"
-            className="w-full p-3 bg-transparent border border-brand-muted focus:outline-none"
-          />
-        </div>
-      </div>
-
-      <div className="text-center mt-12 text-xs">
-        © {new Date().getFullYear()} Oyinmax Luxury. All rights reserved.
       </div>
     </footer>
   );
