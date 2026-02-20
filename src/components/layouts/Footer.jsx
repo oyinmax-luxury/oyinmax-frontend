@@ -48,8 +48,12 @@ export default function Footer() {
               Legal & Social
             </h4>
             <ul className="space-y-4 text-[11px] uppercase tracking-[0.2em] mb-8">
-              <li className="hover:text-brand-gold cursor-pointer transition-colors">Privacy Policy</li>
-              <li className="hover:text-brand-gold cursor-pointer transition-colors">Terms of Service</li>
+              <li className="hover:text-brand-gold transition-colors duration-300">
+                <Link to="/privacy-policy">Privacy Policy</Link>
+                </li>
+                <li className="hover:text-brand-gold transition-colors duration-300">
+                <Link to="/terms-of-service">Terms of Service</Link>
+            </li>
             </ul>
             <div className="flex gap-6 text-white/60">
               <FaInstagram className="hover:text-brand-gold cursor-pointer transition-colors" />

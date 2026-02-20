@@ -17,6 +17,9 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Shop from "./pages/Shop";
 import ProductDetails from "./pages/ProductDetails";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import LegalLayout from "./pages/LegalLayout";
+
 
 function App() {
   return (
@@ -31,6 +34,9 @@ function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/product/:id" element={<ProductDetails />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-of-service" element={<LegalLayout />} />
+        
 
         {/* User Route */}
         <Route 
