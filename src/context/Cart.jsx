@@ -71,7 +71,7 @@ export default function Cart() {
         *Total: £${totalPrice.toLocaleString()}*
         `;
 
-    const whatsappNumber = "447756120178";
+    const whatsappNumber = "447769091142";
     const encodedMessage = encodeURIComponent(message.trim());
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
