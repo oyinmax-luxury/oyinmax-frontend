@@ -45,7 +45,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="font-luxury text-lg text-brand-dark">Speak with Us</h3>
-                    <p className="text-brand-muted font-body">+44 7756 120178</p>
+                    <p className="text-brand-muted font-body">+44 7769 081142</p>
                   </div>
                 </div>
 
@@ -56,7 +56,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="font-luxury text-lg text-brand-dark">Email</h3>
-                    <p className="text-brand-muted font-body">concierge@oyinmax.com</p>
+                    <p className="text-brand-muted font-body">Oyinmaxluxury@gmail.com</p>
                   </div>
                 </div>
               </div>
